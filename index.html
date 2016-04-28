@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>Sarjis</title>
+
+        <style>
+            #container div {
+                background-color: #FDC32D;
+                position: relative;
+                height: 300px;
+                width: 300px;
+                float: left;
+            }
+
+            #container div:not(:last-of-type) {
+                margin-right: 15px;
+            }
+
+            #container img#character {
+                height: 250px;
+                margin-top: 15px;
+            }
+
+            #container > #panel1 > img#character,
+            #container > #panel3 > img#character {
+                margin-left: 15px;
+            }
+
+            #container > #panel2 {
+                text-align: right;
+            }
+
+            #container > #panel2 > img#character {
+                margin-right: 15px;
+            }
+
+            #container > div > img.bubble {
+                position: absolute;
+                top: 10px;
+                right: 5px;
+                width: 150px;
+            }
+
+            #container > div > img.bubble2 {
+                position: absolute;
+                bottom: 10px;
+                left: 5px;
+                width: 150px;
+            }
+
+            #container .text {
+                font-size: 0.8em;
+                position: absolute;
+                background: transparent;
+                z-index: 2;
+            }
+
+            #container #panel1 .text, #container #panel3 .text {
+                width: 120px;
+                height: 60px;
+                right: 20px;
+                top: 40px;
+            }
+
+            #container #panel2 .text {
+                text-align: left;
+                width: 110px; 
+                height: 100px;
+                left: 20px;
+                bottom: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <div id="panel1">
+                <img class="bubble" src="http://housuton-inc.com/images/Muut/H_Puhekupla1.svg">
+            </div>
+
+            <div id="panel2">
+                <img class="bubble2" src="http://housuton-inc.com/images/Muut/H_Puhekupla5.svg">
+            </div>
+            <div id="panel3">
+                <img class="bubble" src="http://housuton-inc.com/images/Muut/H_Puhekupla1.svg">
+            </div>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+        <script>
+            $(function() {
+                var faceRight = [
+                    'H_Sipila.svg',
+                    'H_Vesa.svg',
+                    'H_Ruotimo.svg'
+                ];
+
+                var faceLeft = [
+                    'H_Niko.svg',
+                    'H_Suvi.svg',
+                    'H_Pasi.svg'
+                ];
+
+                var firstLine = [
+                    'Miten meni omasta mielestä?',
+                    'Onko nyt hyvä fiilis?',
+                    'Mites tää SCRUM OMG LOL?'
+                ];
+
+                var secondLine = [
+                    'Ihan ok',
+                    'Minulla on eksistentiaalinen kriisi',
+                    'Jouluna syyää puuroo'
+                ];
+
+                var thirdLine = [
+                    'No ei se ihan niin oo',
+                    'Voe elläimen käpälä',
+                    'Kai tästä kotia joutas jo'
+                ];
+
+                var charUrl = 'http://housuton-inc.com/images/Hahmot/';
+
+                var asker = faceRight[Math.floor(Math.random() * faceRight.length)];
+                var responser = faceLeft[Math.floor(Math.random() * faceLeft.length)];
+
+                var firstPanel = firstLine[Math.floor(Math.random() * firstLine.length)];
+                var secondPanel = secondLine[Math.floor(Math.random() * secondLine.length)];
+                var thirdPanel = thirdLine[Math.floor(Math.random() * thirdLine.length)];
+
+                var $container = $('#container');
+
+                $container.find('#panel1').prepend(
+                    '<img id="character" src="' + charUrl + asker + '">' +
+                    '<div class="text">' + firstPanel + '</div>'
+                );
+
+                $container.find('#panel2').append(
+                    '<img id="character" src="' + charUrl + responser + '">' +
+                    '<div class="text">' + secondPanel + '</div>'
+                );
+
+                $container.find('#panel3').prepend(
+                    '<img id="character" src="' + charUrl + asker + '">' +
+                    '<div class="text">' + thirdPanel + '</div>'
+                );
+            });
+        </script>
+    </body>
+</html>
